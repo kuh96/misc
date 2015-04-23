@@ -34,7 +34,7 @@ num = 9
 delta = pi/num/2
 for n in range(num-1):
     lat = n * delta; #print lat
-    p += rline(2*pi*sin(lat), 0.4, 1,  u"th=%2d" % (180*lat/pi), 0.95, 0.1, linestyle='dotted')
+    p += rline(2*pi*sin(lat), 0.4, 1,  u"%2d" % (180*lat/pi), 0.95, 0.1, linestyle='dotted')
 
 num = 12
 delta = 2 * pi/num
