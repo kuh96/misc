@@ -1,8 +1,6 @@
 #!/usr/local/bin/sage -python
 # -*- coding: utf-8 -*-
 
-
-
 import sys
 from sage.all import *
 from sage.plot.plot3d.parametric_surface import ParametricSurface
