@@ -9,7 +9,8 @@ def rline(phi,r1,r2, str, rr, dphi, **args):
     line = parametric_plot([r*cos(phi), r*sin(phi)], (r,r1,r2), **args)
     pp = phi + dphi
     if str != "" :
-        txt = text(str, (rr*cos(pp),rr*sin(pp)), rotation=180/pi*pp + 90)
+        txt = text(str, (rr*cos(pp),rr*sin(pp)), \
+                   rotation=180/pi*pp + 90)
         return line + txt
     else:
         return line
@@ -33,14 +34,15 @@ p += rline(th+dth, 0.4,1, "",0,0, thickness=2)
 
 num = 9
 delta = pi/num/2
-for n in range(num-1):
+for n in range(num):
     lat = n * delta; #print lat
-    p += rline(2*pi*sin(lat), 0.4, 1,  u"%2d°" % (180*lat/pi), 0.95, 0.1, linestyle='dotted')
+    p += rline(2*pi*sin(lat), 0.4, 1,  u"%2d°" % (180*lat/pi),\
+               0.95, 0.05, linestyle='dotted')
 
 num = 12
 delta = 2 * pi/num
 for n in range(12):
-    p += pline(n*delta, 0.8, pi/2, 0.12, color='limegreen', zorder=1000)
+    p += pline(n*delta, 0.8, 0, 0.12, color='limegreen', zorder=1000)
 
 p.save("out/paper-model.png", axes=False)
-p.show(axes=False, title="Sample 01")
+p.show(axes=False)
