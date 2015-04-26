@@ -6,6 +6,7 @@ from sage.all import *
 from sage.plot.plot3d.parametric_surface import ParametricSurface
 from sage.plot.plot3d.shapes2 import Line
 
+'''
 class ConicSector:
     def __init__(self, R, TH, THH):
         self.R = R; self.TH=TH; self.THH=THH; self.A = self.TH/self.THH
@@ -73,19 +74,20 @@ class ConicSector:
         th = 2*pi*n + th1
         print "  n,th1,th", n, th1.n(), th.n()
         return self.xyz(r, th)
-
+'''
 #
 from sage.plot.plot3d.shapes2 import frame3d, point3d
+from ConicSetor import *
 
 Latitude = 50
 BaseTh = 2*pi*sin(Latitude*pi/180)
 ConeTh = 2*pi
 con = ConicSector(1, BaseTh, ConeTh)
 frame = point3d([-1,-1,-1]) + point3d([1,1,1]) # サイズを一定にするため
-
 p = Graphics()
 p += con.surf(0.5, 1, color='lightgreen', opacity=0.8)
 p += con.arc(0.75)
+p.show()
 
 for i in range(6):
     p += con.spoke(0.5, 1, i*con.TH/6)

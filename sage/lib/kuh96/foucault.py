@@ -1,0 +1,163 @@
+#!/usr/local/bin/sage -python
+# -*- coding: utf-8 -*-
+
+import sys
+from sage.all import *
+from sage.plot.plot3d.parametric_surface import ParametricSurface
+from sage.plot.plot3d.shapes2 import Line
+
+class PaperModel:
+    '''
+    扇形を作成。内側の半径 R1 外側の半径 R2 中心角 TH
+    '''
+    def __init__(self, R1, R2, TH):
+        self.R1 = R1; self.R2 = R2; self.TH=TH
+
+    '''
+    放射状の半径線の　plot を得る。
+    角度の位置 phi, ラベル文字列 str
+    ラベルの半径方向の位置 rlabel,
+    半径線に対するラベルの角度 dphi
+   '''
+    def radiusLine(self, phi, str, rlabel, dphi, **kws):
+        r = var('r')
+        line = parametric_plot([r*cos(phi), r*sin(phi)], \
+                               (r,self.R1,self.R2), **kws)
+        pp = phi + dphi
+        if str != "" :
+            txt = text(str, (rlabel*cos(pp),rlabel*sin(pp)), \
+                       rotation=180/pi*pp + 90)
+            return line + txt
+        else:
+            return line
+
+    def border(self, **kws):
+        phi = var('phi')
+        p = polar_plot(self.R1  ,(phi, 0, self.TH), thickness=2, **kws)
+        p += polar_plot(self.R2 ,(phi, 0, self.TH), thickness=2, **kws)
+        p += self.radiusLine(0, "", self.R1+0.2, 0, thickness=2, **kws)
+        return p
+
+    def arc(self, r, **kws):
+        phi = var('phi')
+        p = polar_plot(r, (phi, 0, self.TH), **kws)
+        return p
+
+    '''
+    緯度を示す半径線とラベルを書く
+    '''
+    def latitudes(self, num, lat1, delta, rlabel, **kws):
+        p = Graphics()
+        for n in range(num):
+            lat = lat1 + n * delta
+            p += self.radiusLine(2*pi*sin(lat), \
+                       u"%2d°" % (180*lat/pi),\
+                       rlabel, 0.05, linestyle='dotted', **kws)
+        return p
+        
+    '''
+    (r,phi)を中心に、長さ2*len 角度 X軸に対しrot の矢印を書く
+    '''
+    def parrow(self, r, phi, len, rot, **args):
+        x = r*cos(phi); y = r*sin(phi);
+        dx = len*cos(rot); dy = len*sin(rot);
+        line = arrow((x - dx,y-dy),(x + dx, y+dy), **args)
+        return line
+    
+    def parrows(self, num, phi0, dphi, r, len, rot, **args):
+        p = Graphics()
+        for n in range(num):
+            phi = phi0 + n*dphi
+            p += self.parrow(r, phi, len, rot, **args)
+        return p
+
+class ConicSector:
+    def __init__(self, R, TH, THH):
+        self.R = R; self.TH=TH; self.THH=THH; self.A = self.TH/self.THH
+
+    def radius(self):
+        return self.R * self.A
+
+    def height(self):
+        return self.R * sqrt(1 - (self.A)**2)
+
+    def arc(self, r, **args):
+        th = var('th')
+        a = parametric_plot3d(self.xyz(r,th), (0, self.TH),  **args)
+        return a
+
+    def surf(self, r1, r2, **args):
+        r, th = var('r,th')
+        a = parametric_plot3d(self.xyz(r,th), (r, r1, r2), (th, 0, self.TH), \
+            boundary_style={"color": "black", "thickness": 2},  **args)
+        return a
+    
+    def spoke(self, r1, r2, th, **args):
+        r = var('r')
+        a = parametric_plot3d( self.xyz(r,th), (r1, r2), **args)
+        return a
+    
+    def line(self, r, th, len, phi, n, **args):
+        x = r*cos(th); y = r*sin(th)
+        x1 = x + len*cos(phi); y1 = y + len*sin(phi);
+        p1 = self.xyzFromXY(x1, y1, n)
+        x2 = x - len*cos(phi); y2 = y - len*sin(phi);
+        p2 = self.xyzFromXY(x2, y2, n)
+
+        t = var('t')
+        a = parametric_plot3d([p1[0]*t + p2[0]*(1-t), \
+                               p1[1]*t + p2[1]*(1-t), p1[2]*t + p2[2]*(1-t)], \
+                               (0,0.5), color='red', thickness=5, **args)
+        b = parametric_plot3d([p1[0]*t + p2[0]*(1-t), p1[1]*t + p2[1]*(1-t), 
+                               p1[2]*t + p2[2]*(1-t)], \
+                              (0.5,1), color='blue', thickness=5, **args)
+        return a+b;
+    
+    def xyz(self, r, th):
+        rr = r*self.A; thh = th/self.A
+        x = rr*cos(thh)
+        y = rr*sin(thh)
+        z = (self.R - r)*sqrt(1-self.A**2)
+        return (x,y,z)
+    
+    def xyzFromXY(self, x, y, n):
+        # TODO: incomplete!
+        r = sqrt(x**2 + y**2)
+        th1 = atan2(y, x)
+        if th1 < 0:
+            th1 = 2*pi + th1
+        th = 2*pi*n + th1
+        print "  n,th1,th", n, th1.n(), th.n()
+        return self.xyz(r, th)
+
+    '''
+    緯度と、図の回転（軸の方向と角度）を指定
+    '''
+    @staticmethod
+    def anime(latitude, rotaxis=(1,1,0), angle=(-pi/2+0.9)):
+        baseTh = 2*pi*sin(latitude*pi/180)
+        coneTh = 2*pi
+        con = ConicSector(1, baseTh, coneTh)
+        frame = point3d([-1,-1,-1]) + point3d([1,1,1]) # サイズを一定にするため
+        p = Graphics()
+        p += con.surf(0.5, 1, color='lightgreen', opacity=0.8)
+        p += con.arc(0.75)
+
+        for i in range(6):
+            p += con.spoke(0.5, 1, i*con.TH/6)
+
+        anime = []
+        linelen = 0.2 # 線の長さ 
+        linedir = 0  # 線とX軸の角度 TODO: pi/2 にするとおかしくなるバグ
+        for i in range(13):
+            th = i*con.TH/6
+            print i, th.n()
+            n = int(th/2/pi);
+            pp = p + con.line(0.75, th, linelen, linedir, n)
+            pp = pp.rotate((1,1,0), (-pi/2 + 0.9)) + frame
+            anime.append(pp)
+
+        a = animate(anime)
+        return a
+
+print "loaded foucault.py"
