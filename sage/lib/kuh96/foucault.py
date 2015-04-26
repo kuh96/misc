@@ -134,7 +134,7 @@ class ConicSector:
     緯度と、図の回転（軸の方向と角度）を指定
     '''
     @staticmethod
-    def anime(latitude, rotaxis=(1,1,0), angle=(-pi/2+0.9)):
+    def anime(latitude, rotaxis=(1,1,0), angle=(-pi/2+0.9), linedir=0):
         baseTh = 2*pi*sin(latitude*pi/180)
         coneTh = 2*pi
         con = ConicSector(1, baseTh, coneTh)
@@ -148,7 +148,7 @@ class ConicSector:
 
         anime = []
         linelen = 0.2 # 線の長さ 
-        linedir = 0  # 線とX軸の角度 TODO: pi/2 にするとおかしくなるバグ
+        # linedir = 0  # 線とX軸の角度 TODO: pi/2 にするとおかしくなるバグ
         for i in range(13):
             th = i*con.TH/6
             print i, th.n()
