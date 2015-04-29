@@ -43,7 +43,7 @@ Rotation at 50 degrees north latitude
 
 So:
 
-| Draw parallel lines on a plane sheet | Bend the sheet into a conical surface,then you get the rotation of the Foucault pendulum! |
+| Draw parallel lines on a plane sheet | Bend the sheet into a conical surface, then you get the rotation of the Foucault pendulum! |
 |:-----:|:-----:|
 | <img src="out/flat50deg.gif" width="50%" /> | <img src="out/50deg.gif" width="50%" /> |
 
