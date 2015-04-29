@@ -1,7 +1,7 @@
-# Understanding the Foucault Pendulum with a Sheet of Paper 
+# Understanding the Foucault Pendulum with a piece of Paper 
 
 Understanding the rotation of the Foucault Pendulum is not difficult.
-You only need a sheet of paper!
+A piece of paper is enough for you! 
 
 ### Cut out the figure along the bold lines
 
@@ -29,12 +29,12 @@ Rotation at 50 degrees north latitude
 
 - Obviously the pendulum does not rotate at the North Pole
 - It's only the ground that rotates
-- The pendulum simply translates in parallel.
+- The pendulum simply translates in parallel
 
 <img src="out/north-pole.gif" width="30%" />
 
-- In the mid-latitudes, the ground is inclined with respect to the earth's axis.
-- The pendulum moves on a conical surface consequently.
+- In the mid-latitudes, the ground is inclined with respect to the earth's axis
+- The pendulum moves on a conical surface consequently
 
 <img src="out/cone.png" width="30%" />
 
@@ -43,7 +43,7 @@ Rotation at 50 degrees north latitude
 
 So:
 
-| Draw parallel lines on a plane sheet| Bend the sheet into a conical surface,then you get the rotation of the Foucault pendulum! |
+| Draw parallel lines on a plane sheet | Bend the sheet into a conical surface,then you get the rotation of the Foucault pendulum! |
 |:-----:|:-----:|
 | <img src="out/flat50deg.gif" width="50%" /> | <img src="out/50deg.gif" width="50%" /> |
 
