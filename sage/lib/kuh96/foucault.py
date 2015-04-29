@@ -151,9 +151,8 @@ class ConicSector:
     緯度と、図の回転（軸の方向と角度）を指定
     '''
     @staticmethod
-    def anime(latitude, rotaxis=(1,1,0), angle=(-pi/2+0.9), linedir=0):
+    def anime(latitude, coneTh=2*pi, rotaxis=(1,1,0), angle=(-pi/2+0.9), linedir=0):
         baseTh = 2*pi*sin(latitude*pi/180)
-        coneTh = 2*pi
         con = ConicSector(1, baseTh, coneTh)
         frame = point3d([-1,-1,-1]) + point3d([1,1,1]) # サイズを一定にするため
         p = Graphics()
@@ -174,7 +173,7 @@ class ConicSector:
             pp = pp.rotate((1,1,0), (-pi/2 + 0.9)) + frame
             anime.append(pp)
 
-        a = animate(anime)
+        a = animate(anime, frame=False)
         return a
 
 print "loaded foucault.py"
