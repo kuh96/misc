@@ -49,8 +49,10 @@ So:
 
 # Acknowledgment
 
-This is my first time of using **[SageMath](http://www.sagemath.org)**.
-Thanks to the great tool !
+This is my first development using **[SageMath](http://www.sagemath.org)** and python.
+Thanks to the great tools !
+
+<img src="etc/dev.JPG" width="30%" />
 
 
 
