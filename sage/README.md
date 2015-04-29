@@ -47,6 +47,11 @@ So:
 |:-----:|:-----:|
 | <img src="out/flat50deg.gif" width="50%" /> | <img src="out/50deg.gif" width="50%" /> |
 
+# Known bugs
+
+<img src="out/known-bug.gif" width="30%" />
+
+
 # Acknowledgment
 
 This is my first development using **[SageMath](http://www.sagemath.org)** and Python.
