@@ -49,8 +49,8 @@ However, a conical surface is developable. It can be flattened into a plane. So:
 
 # Acknowledgment
 
-This is my first time of using **[Sage]: http://www.sagemath.org ** .
-Thank you for the great tool !
+This is my first time of using [SageMath](http://www.sagemath.org) .
+Thanks to the great tool !
 
 
 
