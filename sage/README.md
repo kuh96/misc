@@ -6,8 +6,8 @@
 
 ### Then, build it up!
 
-<img src="out/buildUp.png" width="50%" />
+<img src="out/buildUp.gif" width="50%" />
 
 ### Completed !
 
-<img src="etc/completed.png" width="50%" />
+<img src="etc/completed.JPG" width="50%" />
