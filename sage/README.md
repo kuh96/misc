@@ -41,10 +41,7 @@ The pendulum moves on a conical surface consequently.
 <img src="out/cone.png" width="50%" />
 
 Surely the pendulum will move in parallel on this conical surface!
-
-<img src="out/50deg.gif" width="50%" />
-
-However, a cone surface is developable. It can be flattened into a plane.
+However, a conical surface is developable. It can be flattened into a plane.
 
 So draw parallel lines on a plane sheet:
 
