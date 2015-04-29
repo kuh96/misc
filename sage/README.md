@@ -1,7 +1,13 @@
 # Understanding the Foucault Pendulum with a Sheet of Paper 
 
-## Paper Model
+### Cut out the figure along the bold lines
 
-![paper model](out/paper-model.png)
+<img src="out/paper-model.png" width="50%" />
 
-<img src="out/paper-model.png" />
+### Then, build it up!
+
+<img src="out/buildUp.png" width="50%" />
+
+### Completed !
+
+<img src="etc/completed.png" width="50%" />
