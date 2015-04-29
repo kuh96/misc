@@ -11,3 +11,16 @@
 ### Completed !
 
 <img src="etc/completed.JPG" width="50%" />
+
+### Completed !
+
+### Animation
+<img src="out/50deg.gif" width="50%" />
+
+<img src="out/north-pole.gif" width="50%" />
+
+<img src="out/cone.png" width="50%" />
+
+<img src="out/flat50deg.gif" width="50%" />
+
+<img src="out/50deg.gif" width="50%" />
