@@ -49,7 +49,7 @@ So:
 
 # Acknowledgment
 
-This is my first development using **[SageMath](http://www.sagemath.org)** and python.
+This is my first development using **[SageMath](http://www.sagemath.org)** and Python.
 Thanks to the great tools !
 
 <img src="etc/dev.JPG" width="30%" />
