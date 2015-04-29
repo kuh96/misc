@@ -6,7 +6,7 @@ import time
 from sage.all import *
 from kuh96.foucault import *
 
-Outfile = "../out/buidUp.gif"
+Outfile = "../out/buildUp.gif"
 Latitude = 50
 BaseTh = 2*pi*sin(Latitude*pi/180)
 Num = 3
