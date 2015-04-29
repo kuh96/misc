@@ -42,15 +42,12 @@ The pendulum moves on a conical surface consequently.
 
 Surely the pendulum will move in parallel on this conical surface!
 However, a conical surface is developable. It can be flattened into a plane.
+So,
 
-So draw parallel lines on a plane sheet:
+|draw parallel lines on a plane sheet|Bend the sheet into a conical surface,then you can get the rotation of the Foucault pendulum! |
+|<img src="out/flat50deg.gif" width="50%" />|<img src="out/50deg.gif" width="50%" />|
 
-<img src="out/flat50deg.gif" width="50%" />
 
-Bend the sheet into a conical surface,  
-then you can get the rotation of the Foucault pendulum!
-
-<img src="out/50deg.gif" width="50%" />
 
 
 
