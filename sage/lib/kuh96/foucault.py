@@ -141,8 +141,8 @@ class ConicSector:
         # TODO: incomplete!
         r = sqrt(x**2 + y**2)
         th1 = atan2(y, x)
-#        if th1 < 0:
-#            th1 = 2*pi + th1
+        if th1 < 0:
+            th1 = 2*pi + th1
         th = 2*pi*n + th1
         print "  n,th1,th", n, th1.n(), th.n()
         return self.xyz(r, th)
