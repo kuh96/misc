@@ -48,7 +48,7 @@ class PaperModel:
     '''
     def latitudes(self, num, lat1, delta, rlabel, **kws):
         p = Graphics()
-        for n in range(num):
+        for n in raimnge(num):
             lat = lat1 + n * delta
             p += self.radiusLine(2*pi*sin(lat), \
                        u"%2d°" % (180*lat/pi),\
@@ -113,6 +113,23 @@ class ConicSector:
                               (0.5,1), color='blue', thickness=5, **args)
         return a+b;
     
+    def equation(self):
+        r = var('r'); th = var('th')
+        rr = r*self.A; thh = th/self.A
+        r,th = var('r,th')
+        return (rr*cos(thh), rr*sin(thh), (self.R - r)*sqrt(1-self.A**2))
+
+    def surface(self, rrange=None, thrange=None, **kws):
+        r = var('r'); th = var('th')
+        if rrange == None:
+            rrange = (r, 0, self.R)
+        if thrange == None:
+           thrange = (th, 0, self.TH)
+
+        coords = (rrange, thrange)
+        surf = ParametrizedSurface3D(self.equation(), coords, 'cone sector')
+        return surf
+
     def xyz(self, r, th):
         rr = r*self.A; thh = th/self.A
         x = rr*cos(thh)
@@ -124,8 +141,8 @@ class ConicSector:
         # TODO: incomplete!
         r = sqrt(x**2 + y**2)
         th1 = atan2(y, x)
-        if th1 < 0:
-            th1 = 2*pi + th1
+#        if th1 < 0:
+#            th1 = 2*pi + th1
         th = 2*pi*n + th1
         print "  n,th1,th", n, th1.n(), th.n()
         return self.xyz(r, th)
@@ -161,3 +178,25 @@ class ConicSector:
         return a
 
 print "loaded foucault.py"
+
+if __name__ == '__main__':
+    print "executing foucault.py"
+
+    R = var('R')
+    TH = var('TH')
+    THH = var('THH')
+    con = ConicSector(R, TH, THH)
+    e = con.equation()
+    print e
+
+    RR=0.5
+    con = ConicSector(1, pi*6/4, pi*7/4)
+    e = con.equation()
+    print e
+
+    r, th = var('r,th', domain='real')
+    surf = con.surface()
+    surf.plot().show()
+
+    raw_input('..')
+

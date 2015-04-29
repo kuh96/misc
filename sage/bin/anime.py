@@ -10,7 +10,7 @@ Outfile = "../out/known-bug.gif"
 Latitude = 50
 a = ConicSector.anime(Latitude, linedir=2/pi)
 print "saving.."
-a.gif(savefile=Outfile, delay=100, iterations=1)
+a.gif(savefile=Outfile, delay=100, iterations=0)
 print "end"
 
 
