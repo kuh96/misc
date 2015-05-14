@@ -23,7 +23,7 @@ if False:
     a.gif(savefile=Outfile, delay=100, iterations=0)
     print "end"
 
-if True:
+if False:
     Outfile = "../out/north-pole.gif"
     Latitude = 90
     a = ConicSector.anime(Latitude, linedir=0)
@@ -31,11 +31,28 @@ if True:
     a.gif(savefile=Outfile, delay=100, iterations=0)
     print "end"
 
+if True:
+    Outfile = "../out/30deg.gif"
+    Latitude = 30
+    a = ConicSector.anime(Latitude, linedir=0)
+    print "saving..", Outfile
+    a.gif(savefile=Outfile, delay=100, iterations=0)
+    print "end"
 
 if True:
-    Outfile = "../out/known-bug.gif"
+    Outfile = "../out/flat30deg.gif"
+    Latitude = 30
+    ConeTh = 2*pi*sin(Latitude*pi/180)
+    a = ConicSector.anime(Latitude, coneTh=ConeTh, linedir=0)
+    print "saving..", Outfile
+    a.gif(savefile=Outfile, delay=100, iterations=0)
+    print "end"
+
+if True:
+    Outfile = "../out/fixed-bug.gif"
     Latitude = 50
-    a = ConicSector.anime(Latitude, linedir=2/pi)
+    ConeTh = 2*pi*sin(Latitude*pi/180)
+    a = ConicSector.anime(Latitude, linedir=pi/2)
     print "saving..", Outfile
     a.gif(savefile=Outfile, delay=100, iterations=0)
     print "end"

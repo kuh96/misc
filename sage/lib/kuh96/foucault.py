@@ -6,6 +6,9 @@ from sage.all import *
 from sage.plot.plot3d.parametric_surface import ParametricSurface
 from sage.plot.plot3d.shapes2 import Line
 
+def simplifyFull(list):
+    return [x.simplify_full() for x in list]
+
 class PaperModel:
     '''
     扇形を作成。内側の半径 R1 外側の半径 R2 中心角 TH
@@ -88,31 +91,33 @@ class ConicSector:
 
     def surf(self, r1, r2, **args):
         r, th = var('r,th')
-        a = parametric_plot3d(self.xyz(r,th), (r, r1, r2), (th, 0, self.TH), \
-            boundary_style={"color": "black", "thickness": 2},  **args)
-        return a
+        coords = ((r, r1, r2), (th, 0, self.TH))
+        surf = ParametrizedSurface3D(self.xyz(r,th),  \
+                                     coords, 'cone sector')
+        return surf
     
     def spoke(self, r1, r2, th, **args):
         r = var('r')
         a = parametric_plot3d( self.xyz(r,th), (r1, r2), **args)
         return a
     
-    def line(self, r, th, len, phi, n, **args):
-        x = r*cos(th); y = r*sin(th)
-        x1 = x + len*cos(phi); y1 = y + len*sin(phi);
-        p1 = self.xyzFromXY(x1, y1, n)
-        x2 = x - len*cos(phi); y2 = y - len*sin(phi);
-        p2 = self.xyzFromXY(x2, y2, n)
+    def pline(self, surf, r, th, len, phi, n, **args):
+        at = (r,th)
+        dir = (cos(phi-th), sin(phi-th))
+        t1 = surf.tangent_vector(at, dir)
+        t1 = t1 / abs(t1);
+        p0 = self.xyz0(at)
+        p1 = p0 + len*t1
+        p2 = p0 - len*t1
 
         t = var('t')
-        a = parametric_plot3d([p1[0]*t + p2[0]*(1-t), \
-                               p1[1]*t + p2[1]*(1-t), p1[2]*t + p2[2]*(1-t)], \
+        eq = p1*t + p2*(1-t)
+        a = parametric_plot3d(eq, \
                                (0,0.5), color='red', thickness=5, **args)
-        b = parametric_plot3d([p1[0]*t + p2[0]*(1-t), p1[1]*t + p2[1]*(1-t), 
-                               p1[2]*t + p2[2]*(1-t)], \
-                              (0.5,1), color='blue', thickness=5, **args)
+        b = parametric_plot3d(eq, \
+                              (0.5,1), color='green', thickness=5, **args)
         return a+b;
-    
+
     def equation(self):
         r = var('r'); th = var('th')
         rr = r*self.A; thh = th/self.A
@@ -137,6 +142,9 @@ class ConicSector:
         z = (self.R - r)*sqrt(1-self.A**2)
         return (x,y,z)
     
+    def xyz0(self, rth):
+        return vector(self.xyz(rth[0], rth[1]))
+
     def xyzFromXY(self, x, y, n):
         # TODO: incomplete!
         r = sqrt(x**2 + y**2)
@@ -155,8 +163,10 @@ class ConicSector:
         baseTh = 2*pi*sin(latitude*pi/180)
         con = ConicSector(1, baseTh, coneTh)
         frame = point3d([-1,-1,-1]) + point3d([1,1,1]) # サイズを一定にするため
+        surf = con.surf(0.5, 1)
         p = Graphics()
-        p += con.surf(0.5, 1, color='lightgreen', opacity=0.8)
+        p += surf.plot(color='lightgreen', opacity=0.8, \
+                       boundary_style={"color": "black", "thickness": 2})
         p += con.arc(0.75)
 
         for i in range(6):
@@ -167,9 +177,8 @@ class ConicSector:
         # linedir = 0  # 線とX軸の角度 TODO: pi/2 にするとおかしくなるバグ
         for i in range(13):
             th = i*con.TH/6
-            print i, th.n()
             n = int(th/2/pi);
-            pp = p + con.line(0.75, th, linelen, linedir, n)
+            pp = p + con.pline(surf, 0.75, th, linelen, linedir, n)
             pp = pp.rotate((1,1,0), (-pi/2 + 0.9)) + frame
             anime.append(pp)
 
