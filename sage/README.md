@@ -1,4 +1,4 @@
-# Understanding the Foucault Pendulum with a piece of Paper 
+# Understanding the Foucault Pendulum Only with a Piece of Paper 
 
 Understanding the rotation of the Foucault Pendulum is not difficult.
 A piece of paper is enough for you! 
@@ -43,13 +43,16 @@ Rotation at 50 degrees north latitude
 
 So:
 
-| Draw parallel lines on a plane sheet | Bend the sheet into a conical surface, then you get the rotation of the Foucault pendulum! |
+|| Draw parallel lines on a plane sheet | Bend the sheet into a conical surface, then you get the rotation of the Foucault pendulum! |
+|:-----:|:-----:|:-----:|
+|5o degrees| <img src="out/flat50deg.gif" width="50%" /> | <img src="out/50deg.gif" width="50%" /> |
+|30 degrees| <img src="out/flat30deg.gif" width="50%" /> | <img src="out/30deg.gif" width="50%" /> |
+
+# Fixed bugs (2015-05-14)
+
+|fixed|old bug|
 |:-----:|:-----:|
-| <img src="out/flat50deg.gif" width="50%" /> | <img src="out/50deg.gif" width="50%" /> |
-
-# Known bugs
-
-<img src="out/known-bug.gif" width="30%" />
+|<img src="out/fixed-bug.gif" width="30%" />|<img src="out/known-bug.gif" width="30%" />|
 
 
 # Acknowledgment
