@@ -3,6 +3,7 @@
 
 import sys
 from sage.all import *
+from sage.symbolic.integration.integral import *
 
 class PlaneCurve:
     '''
@@ -54,7 +55,7 @@ class PlaneCurve:
         return plot
 
     def tangent(self):
-        return diff(self.eq, self.variable)
+        return self.dtds() * diff(self.eq, self.variable)
 
     def normal(self):
         return diff(self.eq, self.variable, 2)
@@ -71,6 +72,9 @@ class PlaneCurve:
         nf = self.eval(n)
         return (tf, nf)
 
+    def dtds(self):
+        df = diff(self.eq, self.variable)
+        return 1/abs(df) 
 
 print "loaded plane.py"
 
@@ -80,21 +84,28 @@ if __name__ == '__main__':
     r, th = var('r, th')
     curve = PlaneCurve(th, r*cos(th), r*sin(th), 'circle')
     curve.setParams(r=2)
+    print "eq=", curve.eq
     print "funcs=", curve.eval(curve.eq)
     print "tan=", curve.tangent()
     print "nor=", curve.normal()
     print "frame=", curve.frame()
+
     plot = curve.plot(0, 2*pi)
     plot += curve.plotFrames(0, 2*pi, 20);
     plot.show()
     
     a,b = var('a,b')
     curve = PlaneCurve(th, a*cos(th), b*sin(th), 'ellipse')
+#    t = var('t')
+#    curve = PlaneCurve(t, t, t**2, 'ellipse')
+    print "eq=", curve.eq
+    print "eq=", curve.eq
     curve.setParams(a=3, b=1.8)
     print "funcs=", curve.eval(curve.eq)
     print "tan=", curve.tangent()
     print "nor=", curve.normal()
     print "frame=", curve.frame()
+
     plot = curve.plot(0, 2*pi)
     plot += curve.plotFrames(0, 2*pi, 20);
     plot.show()

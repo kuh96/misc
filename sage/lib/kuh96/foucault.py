@@ -51,7 +51,7 @@ class PaperModel:
     '''
     def latitudes(self, num, lat1, delta, rlabel, **kws):
         p = Graphics()
-        for n in raimnge(num):
+        for n in range(num):
             lat = lat1 + n * delta
             p += self.radiusLine(2*pi*sin(lat), \
                        u"%2d°" % (180*lat/pi),\
