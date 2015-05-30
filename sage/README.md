@@ -3,13 +3,16 @@
 Understanding the rotation of the Foucault Pendulum is not difficult.
 A piece of paper is enough for you! 
 
+* [original in Japanese](http://qiita.com/kuh96/items/a4b0816875fee3684dc4)
+
 ### Cut out the figure along the bold lines
 
 <img src="out/paper-model.png" width="30%" />
 
 ### Then, build it up into a cone!
 
-For example, overlay the 0-degree edge on top of the 50-degree line, and fix the sheet with a clip.
+* Each radial line and label (xx degrees) designates the latitude where you want to observe the rotaion of the pendulum.
+* For example, overlay the 0-degree edge on top of the 50-degree line, and fix the sheet with a clip.
 <img src="out/buildUp.gif" width="30%" />
 
 ### Completed !
