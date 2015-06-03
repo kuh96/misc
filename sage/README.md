@@ -22,17 +22,15 @@ A piece of paper is enough for you!
 - Rotate the paper model and look at the arrow that comes in front of you
 - Or rotate yourself around the model!
 
-### Animation
-
-Rotation at 50 degrees north latitude
+### Animation - Rotation at 50 degrees north latitude
 
 <img src="out/50deg.gif" width="30%" />
 
 ### Why?
 
-- Obviously the pendulum does not rotate at the North Pole
-- It's only the ground that rotates
-- The pendulum simply translates in parallel
+- Obviously the pendulum does not rotate near the North Pole
+ - It's only the ground that rotates
+ - The pendulum simply translates in parallel
 
 <img src="out/north-pole.gif" width="30%" />
 
@@ -42,7 +40,7 @@ Rotation at 50 degrees north latitude
 <img src="out/cone.png" width="30%" />
 
 - Surely the pendulum will move in parallel on this conical surface!
-- However, a conical surface is developable. It can be flattened into a plane
+- Luckily a conical surface is developable. It can be flattened into a plane!
 
 So:
 
