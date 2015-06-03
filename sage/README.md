@@ -7,7 +7,8 @@ A piece of paper is enough for you!
 
 ### Cut out the figure along the bold lines
 
-<img src="out/paper-model.png" width="30%" />
+<img src="out/paper-model.png" width="30%" /> 
+<a href="https://kuh96.github.io/misc/sage/out/paper-model.png" target="new">Print the image</a>
 
 ### Then, build it up into a cone!
 
