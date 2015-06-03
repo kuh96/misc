@@ -35,7 +35,7 @@ A piece of paper is enough for you!
 <img src="out/north-pole.gif" width="30%" />
 
 - In the mid-latitudes, the ground is inclined with respect to the earth's axis
-- The pendulum moves on a conical surface consequently
+- The pendulum moves along a conical surface consequently
 
 <img src="out/cone.png" width="30%" />
 
