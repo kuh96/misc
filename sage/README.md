@@ -1,4 +1,4 @@
-# Understanding the Foucault Pendulum Only with a Piece of Paper 
+# Use a Piece of Paper, to Understand the Foucault Pendulum 
 
 Understanding the rotation of the Foucault Pendulum is not difficult.
 A piece of paper is enough for you! 
