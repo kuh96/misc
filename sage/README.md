@@ -3,7 +3,7 @@
 Understanding the rotation of the Foucault Pendulum is not difficult.
 A piece of paper is enough for you! 
 
-*　This is an English summary of [my Japanese article](http://qiita.com/kuh96/items/a4b0816875fee3684dc4)
+ - This is an English summary of [my Japanese article](http://qiita.com/kuh96/items/a4b0816875fee3684dc4)
 
 ### Cut out the figure along the bold lines
 
